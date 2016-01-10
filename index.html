@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The Quickstart Project Zomboid Server Guide</title>
+    <meta name="keywords" content="project, zomboid, project zomboid, sp00kzone, server guide, quickstart server guide" />
+    <meta name="description" content="A quickstart guide to starting your own multiplayer Project Zomboid server." />
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="hbrew.css" rel="stylesheet" type="text/css" media="all" /><link rel="shortcut icon" href="images/icon.png"/>
+    <script>
+        // pretty masterful javascript code here
+        // written by smealum
+        function toggleDisplay(id)
+        {
+            var el = document.getElementById(id);
+            if(el.style.display == "none") el.style.display = "block";
+            else el.style.display = "none";
+        }
+		
+    </script>
+</head>
+
+<body>
+
+    <div id="toplogo">
+        <img class="logo" src="images/logo.png" alt="The Homebrew Launcher" width="400"/>
+    </div>
+
+    <div class="content">
+		<h2>Welcome to the guide!</h2>
+        Welcome to my quickstart <a href="http://projectzomboid.com/">Project Zomboid</a> server guide! After finishing this guide, you should understand how to host and configure your very own Project Zomboid server for you and your friends to enjoy.
+		<br>
+		<br>
+		<strong>Note:</strong> this guide is updated to Project Zomboid build <strong>v32.30</strong>.
+    </div>
+
+    <div class="content">
+        <h2>What is covered in this guide?</h2>
+        This guide covers downloading, configuring, and hosting a Project Zomboid server. It also covers installing mods on your server; <a href="http://theindiestone.com/forums/index.php/topic/11557-hydrocraft-mod/">Hydrocraft</a>, <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=592183229">GTV Thieves</a>, and <a href="http://theindiestone.com/forums/index.php/topic/11164-ormtnmans-real-guns-mod-1242-3230/">ORMtnMan's Real Guns Mod</a> are used as examples. By the end of the guide you should be able to do the following:
+        <br>
+        <br>
+        <table style="width:100%">
+            <tr>
+                <td style="width:50%"><a href="#downloading"><img src="images/cherrypie.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Download your slice of the Project Zomboid server pie.</td>
+                <td style="width:50%"><a href="#configuring"><img src="images/spiffo.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Configure settings and mods for your server.</td>
+            </tr>
+            <tr>
+                <td style="width:50%"><img src="images/pillow.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"> Make your server habitable through port forwarding.</td>
+                <td style="width:50%"><img src="images/deadrat.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"> Scavenge for dead rats and nails in peace.</td>
+            </tr>
+        </table>
+		<div id="downloading"></div>
+    </div>
+
+    <div class="content">
+        <h2>Downloading the server</h2>
+        Downloading the server files is fairly straightforward.
+        <br>
+        <div style="margin-left: 20px; margin-top: 10px;">
+			<table> <tr>
+                <td> <img src="images/server.ico" width="40" style="margin-right: 8px; border-radius: 5px;"> </td>
+                <td style="font-size: 1.2em;"> Project Zomboid Dedicated Server </td>
+            </tr> </table></a>
+            <div class="step">
+                In your Steam library, select the dropdown labelled "Games" (or your current selected category, e.g. "Installed," "Recent," "Favorites") and click on "Tools."
+            </div>
+
+            <div id="configuring"></div>
+        </div>
+
+    </div>
+
+    <div class="content">
+        <h2>Configuring server settings</h2>
+        In order for homebrew to run on your system, you will need to place a few files on your SD card :
+        <br>
+        <br>
+        <ul>
+            <li> <strong>boot.3dsx</strong> : this file should be placed at the root of your SD card. It's what ninjhax/ironhax/tubehax will run first ! Usually, this is the Homebrew Launcher. </li>
+            <li> <strong>3ds/</strong> : this folder will contain all the homebrew applications you want to install to your system. You can either place 3DSX files directly inside of that folder, or create an individual folder for each application you install.</li>
+        </ul>
+
+        To make things easier, we put together the <a href="https://smealum.github.io/ninjhax2/starter.zip">homebrew starter kit</a>; you can just download it and extract it at the root of your SD card. Alternatively, you may choose to only download <a href="https://smealum.github.io/ninjhax2/boot.3dsx">The Homebrew Launcher menu executable</a> and place it at the root of your SD card. <br>
+        No matter what, you should have a file named boot.3dsx placed at the root of your SD card. <br/>
+
+    </div>
+
+    <div class="content">
+        <h2>Frequently Asked Questions</h2>
+        <br>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Where can I find more homebrew applications ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            You can visit <a href="http://www.3dbrew.org/wiki/Homebrew_Applications">3dbrew</a> for more homebrew applications.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Can I use this to take screenshots ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Yes. You can take screenshots in either homebrew or commercial games by hitting the HOME button. You can then convert them to PNG by using the screenshot tool included in the starter pack. In order to take screenshots of official games, you will need to run them through HANS.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; I set up tubehax and I can no longer access the eShop. What's going on ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            tubehax works by redirecting your DNS requests to a server that will make your console think that youtube.com is another server. In addition to this, our DNS server blocks requests to Nintendo's eShop and update servers by default, meaning that as long as you have the tubehax DNS set up, you will not be able to access the eShop or update your console. You can restore access to the eShop (temporarily or permanently) by switching the DNS back to its original settings. If there is enough demand, we may consider setting up another DNS server for tubehax which does not block traffic to Nintendo's servers.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Can ironhax be uninstalled ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Yes. Simply select the ironhax savegame slot in the IronFall main menu, and delete it !
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Can tubehax be uninstalled ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            Yes. tubehax is never actually installed to your system; all you need to do to disable it is reset the DNS in your internet connection settings to what it originally was.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; What are 3DSX files ? Why doesn't the homebrew launcher load CXIs ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            We made the decision early on that the homebrew launcher should only work with a highly relocatable executable format as a way to improve compatibility with potential future exploits (such as ironhax and tubehax), which may or may not include the ability to update virtual memory page permissions. 3DSX is a format developed by fincs which allows us to do just that; each section (.text, rodata and data) can be relocated independently, making it perfect for our needs. Compiling as 3DSX rather than CXI will help maximize future compatibility.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Does this allow region free ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            It totally does and it's pretty rad. You can access the region free feature directly from the Homebrew Launcher; it's the first option in the list, can't miss it. For more information on the region free feature, please visit <a href="https://github.com/smealum/regionFOUR/blob/master/README.md">regionFOUR's README page</a>, as the exact same limitations currently apply.
+        </p>
+
+        <h3 style="padding-left: 1em;">
+            &gt; Does this let me run roms ?
+        </h3>
+        <p style="padding-left: 3em;">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            No. These exploits run strictly in userland, meaning that we do not have full control over the console, and therefore cannot run pirated software. That being said, we have the same amount of access as regular apps and games to the console's hardware, and so we can make some kickass homebrew!
+        </p>
+
+    </div>
+
+    <div class="content">
+        <h2>Credits</h2>
+        <br>
+        <p>
+        Most of the code for ninjhax, ironhax and tubehax was written by smea. Everything pertaining to smashbroshax, oot3dhax and browserhax was made by yellows8. The vulnerability used for homemenuhax was discovered by yellows8 and exploited jointly by yellows8 and smea. In any case a lot of help was provided by the following people : <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - yellows8<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - plutoo<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - mtheall<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - fincs<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - megazig, Bond697<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - Fluto, Arkhandar (hbmenu design) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - Normmatt, ichfly <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - lobo (webpage template) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - CUE (compression code) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - GW (bringing attention to the webkit bug used by tubehax) <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        - derlanalmeida, ThibG (icons on this page) <br/>
+        We'd all also like to thank everyone who has been contributing to the 3DS scene in one way or another, including (but not limited to) :  yuriks, Subv, sm, StapleButter, bunnei, WinterMute, neobrain, and, like, so many other people.
+        </p>
+
+    </div>
+
+    <div id="footer" class="container">
+        <p style="color: white;">Follow SPKZ on twitter : <a href="http://twitter.com/sp00kzone">@sp00kzone</a></p>
+    </div>
+</body>
+</html>
