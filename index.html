@@ -5,9 +5,14 @@
     <title>The Quickstart Project Zomboid Server Guide</title>
     <meta name="keywords" content="project, zomboid, project zomboid, sp00kzone, server guide, quickstart server guide" />
     <meta name="description" content="A quickstart guide to starting your own multiplayer Project Zomboid server." />
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link href="hbrew.css" rel="stylesheet" type="text/css" media="all" /><link rel="shortcut icon" href="images/icon.png"/>
+
+	<!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+	<link rel="icon" href="favicon.png">
+
+    <link href="guide.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="prism.css" rel="stylesheet" type="text/css" media="all" />
+	<link rel="shortcut icon" href="images/icon.png"/>
+	<script src="prism.js"></script>
     <script>
         // pretty masterful javascript code here
         // written by smealum
@@ -24,7 +29,7 @@
 <body>
 
     <div id="toplogo">
-        <img class="logo" src="images/logo.png" alt="The Homebrew Launcher" width="400"/>
+        <img class="logo" src="images/logo.png" alt="The Quickstart Project Zomboid Server Guide" width="400"/>
     </div>
 
     <div class="content">
@@ -32,22 +37,22 @@
         Welcome to my quickstart <a href="http://projectzomboid.com/">Project Zomboid</a> server guide! After finishing this guide, you should understand how to host and configure your very own Project Zomboid server for you and your friends to enjoy.
 		<br>
 		<br>
-		<strong>Note:</strong> this guide is updated to Project Zomboid build <strong>v32.30</strong>.
+		<strong>Note:</strong> This guide is made for Project Zomboid build <strong>v32.30</strong> on <strong>Windows</strong>.
     </div>
 
     <div class="content">
         <h2>What is covered in this guide?</h2>
-        This guide covers downloading, configuring, and hosting a Project Zomboid server. It also covers installing mods on your server; <a href="http://theindiestone.com/forums/index.php/topic/11557-hydrocraft-mod/">Hydrocraft</a>, <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=592183229">GTV Thieves</a>, and <a href="http://theindiestone.com/forums/index.php/topic/11164-ormtnmans-real-guns-mod-1242-3230/">ORMtnMan's Real Guns Mod</a> are used as examples. By the end of the guide you should be able to do the following:
+        This guide covers downloading, configuring, and hosting a Project Zomboid server. It also covers installing mods on your server; <a href="http://theindiestone.com/forums/index.php/topic/11557-hydrocraft-mod/">Hydrocraft</a> is used as an example. By the end of the guide you should be able to do the following:
         <br>
         <br>
         <table style="width:100%">
             <tr>
                 <td style="width:50%"><a href="#downloading"><img src="images/cherrypie.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Download your slice of the Project Zomboid server pie.</td>
-                <td style="width:50%"><a href="#configuring"><img src="images/spiffo.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Configure settings and mods for your server.</td>
+                <td style="width:50%"><a href="#configuring"><img src="images/spiffo.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Configure server settings to fit your needs.</td>
             </tr>
             <tr>
-                <td style="width:50%"><img src="images/pillow.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"> Make your server habitable through port forwarding.</td>
-                <td style="width:50%"><img src="images/deadrat.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"> Scavenge for dead rats and nails in peace.</td>
+                <td style="width:50%"><a href="#modding"><img src="images/pillow.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Get comfy with great server mods like <a href="http://theindiestone.com/forums/index.php/topic/11557-hydrocraft-mod/">Hydrocraft</a>.</td>
+                <td style="width:50%"><a href="#portforwarding"><img src="images/deadrat.png" width="65" align="left" style="margin-right: 8px; border-radius: 5px; padding-top: 0px;"></a> Make your server habitable through port forwarding.</td>
             </tr>
         </table>
 		<div id="downloading"></div>
@@ -57,13 +62,18 @@
         <h2>Downloading the server</h2>
         Downloading the server files is fairly straightforward.
         <br>
-        <div style="margin-left: 20px; margin-top: 10px;">
+        <div style="margin: 10px 20px 0px 20px;">
 			<table> <tr>
                 <td> <img src="images/server.ico" width="40" style="margin-right: 8px; border-radius: 5px;"> </td>
                 <td style="font-size: 1.2em;"> Project Zomboid Dedicated Server </td>
             </tr> </table></a>
             <div class="step">
                 In your Steam library, select the dropdown labelled "Games" (or your current selected category, e.g. "Installed," "Recent," "Favorites") and click on "Tools."
+				<br>
+				<br>
+				<img class="logo" src="images/downloading_tools.png" width="200">
+				<br>
+				Find "Project Zomboid Dedicated Server" and install it. Once it's been downloaded, launch the server and follow the prompt to create an administrator account password. Once the server is finished loading (you'll be able to tell), type <code class="language-ini">quit</code> and close the window. The server is now ready to be configured.
             </div>
 
             <div id="configuring"></div>
@@ -73,118 +83,175 @@
 
     <div class="content">
         <h2>Configuring server settings</h2>
-        In order for homebrew to run on your system, you will need to place a few files on your SD card :
+        Server settings are located in <code class="language-ini">C:\Users\%username%\Zomboid\Server\servertest.ini</code> and are all editable to your preference. Here are some settings worth noting:
         <br>
         <br>
         <ul>
-            <li> <strong>boot.3dsx</strong> : this file should be placed at the root of your SD card. It's what ninjhax/ironhax/tubehax will run first ! Usually, this is the Homebrew Launcher. </li>
-            <li> <strong>3ds/</strong> : this folder will contain all the homebrew applications you want to install to your system. You can either place 3DSX files directly inside of that folder, or create an individual folder for each application you install.</li>
+			<li><code class="language-ini">nightlengthmodifier=1.0</code>
+			<br>
+			Length of the night.
+			<br>
+			Default modifier is <code class="language-ini">1.0</code>. </li>
+			<br>
+			
+            <li><code class="language-ini">PVP=</code>
+			<br>
+			Controls whether players are allowed to participate in Player Vs. Player combat.
+			<br>
+			Default setting is <code class="language-ini">true</code>. </li>
+			<br>
+			
+            <li><code class="language-ini">GlobalChat=</code>
+			<br>
+			Controls whether players are allowed to use global chat.
+			<br>
+			Default setting is <code class="language-ini">true.</code></li>
+			<br>
+			
+			<li><code class="language-ini">ServerWelcomeMessage=</code>
+			<br>
+			Message displayed when the user connects. I recommend tweaking the default to something more interesting. </li>
+			<br>
+			
+			<li><code class="language-ini">DisplayUserName=</code>
+			<br>
+			Controls whether players can see usernames above players' heads.
+			<br>
+			Default setting is <code class="language-ini">true</code>.</li>
+			<br>
+			
+			<li><code class="language-ini">Mods=</code>
+			<br>
+			Specifies which mods to load. This will be explained in the next section. </li>
+			<br>
+			
+			<li><code class="language-ini">Map=</code>
+			<br>
+			Specifies which map to load. This will also be explained in the next section. </li>
+			<br>
+			
+			<li><code class="language-ini">Public=</code>
+			<br>
+			Controls whether players are allowed to participate in Player Vs. Player combat.
+			<br>
+			Default setting is <code class="language-ini">false</code>. </li>
+			<br>
+			
+			<li><code class="language-ini">PublicName=</code>
+			<br>
+			Specifies the server name in public listings. </li>
+			<br>
+			
+			<li><code class="language-ini">PublicDescription=</code>
+			<br>
+			Specifies the server description in public listings. </li>
+			<br>
+			
+			<li><code class="language-ini">MaxPlayers=</code>
+			<br>
+			Controls whether players are allowed to participate in Player Vs. Player combat.
+			<br>
+			Default setting is <code class="language-ini">64</code>. </li>
+			<br>
+			
+			<li><code class="language-ini">SaveWorldEveryMinutes=</code>
+			<br>
+			Specifies the time between autosaves in minutes. I recommend changing the default.
+			<br>
+			Default setting is <code class="language-ini">blank</code>. </li>
+			<br>
+			
+			<li><code class="language-ini">Password=</code>
+			<br>
+			Specifies the server password. I also recommend changing this.
+			<br>
+			Default setting is <code class="language-ini">blank</code>. </li>
+			<br>
         </ul>
+        There are many 56 options total, so I recommend that you figure out what the rest of them do and decide whether or not they are useful to you.
+		<br>
+		<br>
+		
+        We can now move on to configuring mods.
+		<br>
 
-        To make things easier, we put together the <a href="https://smealum.github.io/ninjhax2/starter.zip">homebrew starter kit</a>; you can just download it and extract it at the root of your SD card. Alternatively, you may choose to only download <a href="https://smealum.github.io/ninjhax2/boot.3dsx">The Homebrew Launcher menu executable</a> and place it at the root of your SD card. <br>
-        No matter what, you should have a file named boot.3dsx placed at the root of your SD card. <br/>
-
+		<div id="modding"></div>
     </div>
 
     <div class="content">
-        <h2>Frequently Asked Questions</h2>
-        <br>
+        <h2>Configuring mods (optional)</h2>
+		<strong>NOTE: This step is not required. I recommend it, but feel free to move on to port forwarding.</strong>
+		<br>
+		<br>
+        Configuring mods for your Project Zomboid server is very easy. In Project Zomboid, both the players and the server must have the same mods installed in order to work. Communicate with your players to plan which mods everyone will use. I'll be using <a href="http://theindiestone.com/forums/index.php/topic/11557-hydrocraft-mod/">Hydrocraft</a> as an example.
+		<br>
+		<br>
+        <div style="margin: 10px 20px 0px 20px;">
+			<table> <tr>
+                <td> <img src="images/hydrocraft.ico" width="40" style="margin-right: 8px; border-radius: 5px;"> </td>
+                <td style="font-size: 1.2em;"> Hydrocraft </td>
+            </tr> </table></a>
+            <div class="step">
+                Hydrocraft, in it's authors words, is a mod based around crafting and filling in the empty world of Zomboid with more stuff," inspired by games like <a href="http://www.havenandhearth.com/portal/">Haven and Hearth</a>. It adds crafting trees for alchemy, herbalism, metallurgy, mining, and many other professions, and adds hundreds of other items. This mod is core to my server experience.
+				<br>
+				<br>
+				<img class="logo" src="images/modding_hydrocraft.jpg" width="500">
+				<br>
+				<strong>Download <a href="http://pz-mods.net/weapons-items/Hydrocraft/">the non-Workshop version of Hydrocraft</a>.</strong> Extract the contents of the zip file into a folder named <code class="language-ini">Hydrocraft</code>. The folder will contain a <code class="language-ini">media</code> folder containing mod assets, a <code class="language-ini">Hydrocraft ReadMe.txt</code> containing credit to contributors, a <code class="language-ini">mod.info</code> file containing mod name, poster file specification, id, and description, and the <code class="language-ini">poster.png</code> image.
+				<br>
+				<br>
+				<strong>Move the <code class="language-ini">Hydrocraft</code> folder, containing all the files I just described, to <code class="language-ini">C:\Users\%username%\Zomboid\mods</code>.</strong>
+				<br>
+				<br>
+				<strong>Now, open the Hydrocraft folder and open <code class="language-ini">mod.info</code>.</strong> One of the lines should read <code class="language-ini">id=Hydrocraft</code>. This is the identifier you need to place after <code class="language-ini">Mods=</code> in <code class="language-ini">servertest.ini</code>. For future reference, be sure to separate mod names with a semicolon if you end up with more than one.
+				<br>
+				<br>
+				<strong>Have all players subscribe (i.e., download) <a href="http://steamcommunity.com/sharedfiles/filedetails/?id=498441420">the Workhop version of Hydrocraft</a>.</strong> This ensures that the player client and server are on always on the same page referencing the same content.
+				<br>
+				<br>
+				<h2>Mod installation complete!</h2>
+				All of the mods I have encountered so far (<a href="http://theindiestone.com/forums/index.php/topic/9245-how-to-create-a-custom-map-server/">except for maps</a>) are installed in exactly the same way. Just be sure to add the proper id to <code class="language-ini">servertest.ini</code> and separate them with semicolons.
+            </div>
 
-        <h3 style="padding-left: 1em;">
-            &gt; Where can I find more homebrew applications ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            You can visit <a href="http://www.3dbrew.org/wiki/Homebrew_Applications">3dbrew</a> for more homebrew applications.
-        </p>
+            <div id="portforwarding"></div>
+        </div>
 
-        <h3 style="padding-left: 1em;">
-            &gt; Can I use this to take screenshots ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            Yes. You can take screenshots in either homebrew or commercial games by hitting the HOME button. You can then convert them to PNG by using the screenshot tool included in the starter pack. In order to take screenshots of official games, you will need to run them through HANS.
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; I set up tubehax and I can no longer access the eShop. What's going on ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            tubehax works by redirecting your DNS requests to a server that will make your console think that youtube.com is another server. In addition to this, our DNS server blocks requests to Nintendo's eShop and update servers by default, meaning that as long as you have the tubehax DNS set up, you will not be able to access the eShop or update your console. You can restore access to the eShop (temporarily or permanently) by switching the DNS back to its original settings. If there is enough demand, we may consider setting up another DNS server for tubehax which does not block traffic to Nintendo's servers.
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; Can ironhax be uninstalled ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            Yes. Simply select the ironhax savegame slot in the IronFall main menu, and delete it !
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; Can tubehax be uninstalled ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            Yes. tubehax is never actually installed to your system; all you need to do to disable it is reset the DNS in your internet connection settings to what it originally was.
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; What are 3DSX files ? Why doesn't the homebrew launcher load CXIs ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            We made the decision early on that the homebrew launcher should only work with a highly relocatable executable format as a way to improve compatibility with potential future exploits (such as ironhax and tubehax), which may or may not include the ability to update virtual memory page permissions. 3DSX is a format developed by fincs which allows us to do just that; each section (.text, rodata and data) can be relocated independently, making it perfect for our needs. Compiling as 3DSX rather than CXI will help maximize future compatibility.
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; Does this allow region free ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            It totally does and it's pretty rad. You can access the region free feature directly from the Homebrew Launcher; it's the first option in the list, can't miss it. For more information on the region free feature, please visit <a href="https://github.com/smealum/regionFOUR/blob/master/README.md">regionFOUR's README page</a>, as the exact same limitations currently apply.
-        </p>
-
-        <h3 style="padding-left: 1em;">
-            &gt; Does this let me run roms ?
-        </h3>
-        <p style="padding-left: 3em;">
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            No. These exploits run strictly in userland, meaning that we do not have full control over the console, and therefore cannot run pirated software. That being said, we have the same amount of access as regular apps and games to the console's hardware, and so we can make some kickass homebrew!
-        </p>
+    </div>
+	
+	<div class="content">
+        <h2>Port forwarding</h2>
+		<strong>Port forwarding is a much better solution than Hamachi or other such products. Rather than opening ports, they create small, private virtual networks that essentially emulate LAN. They should be considered temporary solutions.</strong>
+		<br>
+		<br>
+        Port forwarding is the act of telling your router to allow specific ports to receive traffic. Port forwarding is required in order for people to connect with your server.  However, there are many, many, <em>many</em> different router models, all with different software, so I'll just give you the essentials. If you've never done this before, don't worry! So long as you are specific with the ports you open, there shouldn't be any issues.
+		<br>
+		<br>
+		<strong>Here's what you need to know:</strong>
+		<ul>
+			<li>Find your router on <a href="http://portforward.com/english/routers/port_forwarding/routerindex.htm">PortForward.com</a> and find out how to log in to your router.</li>
+			<li>Port <strong>16261</strong> needs to be forwarded as <strong>UDP/TCP or UDP</strong>. Be sure to specify your computer as the target computer.</li>
+			<li>One more port (after 16261) should be forwarded (<strong>as UDP/TCP or TCP</strong>) for every player slot. This can be done in a range. In my experience, I just port forward 16261-16272 as UDP/TCP.</li>
+		</ul>
+		<br>
+		<h2>Port forwarding complete!</h2>
+		Players should now be able to connect to your public IP address, which you can find at <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a>. Have fun!
 
     </div>
 
     <div class="content">
         <h2>Credits</h2>
-        <br>
-        <p>
-        Most of the code for ninjhax, ironhax and tubehax was written by smea. Everything pertaining to smashbroshax, oot3dhax and browserhax was made by yellows8. The vulnerability used for homemenuhax was discovered by yellows8 and exploited jointly by yellows8 and smea. In any case a lot of help was provided by the following people : <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - yellows8<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - plutoo<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - mtheall<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - fincs<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - megazig, Bond697<br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - Fluto, Arkhandar (hbmenu design) <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - Normmatt, ichfly <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - lobo (webpage template) <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - CUE (compression code) <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - GW (bringing attention to the webkit bug used by tubehax) <br/>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        - derlanalmeida, ThibG (icons on this page) <br/>
-        We'd all also like to thank everyone who has been contributing to the 3DS scene in one way or another, including (but not limited to) :  yuriks, Subv, sm, StapleButter, bunnei, WinterMute, neobrain, and, like, so many other people.
-        </p>
+        I'd like to thank some people for their contributions to Project Zomboid, the PZ modding community, and for helping me with this little guide: <br><br>
+		<ul>
+			<li>The Indie Stone development team, for making the game!</li>
+			<li>AsenWolf, for bugging me to get the game I've already grown to love</li>
+			<li>BadManWill393, for staying up late and figuring stuff out with me</li>
+			<li>Hydromancex, for making such an amazing and expansive mod</li>
+			<li>Smealum, for uploading the source of his Homebrew website :)</li>
+			<li><a href="pzwiki.net">PZwiki.net</a> volunteers, for all of their hard work
+		</ul>
+        I hope you've found this guide useful!
+		<br>
+		<br>
 
     </div>
 
